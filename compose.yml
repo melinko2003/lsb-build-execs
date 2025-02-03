@@ -1,0 +1,23 @@
+--- 
+version: '3.1'
+
+services:
+
+  # Grab all the Resources:
+  init:
+    image: ghcr.io/melinko2003/lsb-vanilla-init:latest
+    restart: "no"
+    volumes:
+      - ./lsb/ffxi:/opt/ffxi
+
+  build:
+    depends_on:
+      - init
+    image: ghcr.io/melinko2003/lsb-build-execs:latest
+    # image: lsb-build-execs
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    restart: "no"
+    volumes:
+      - ./lsb/ffxi:/opt/ffxi
